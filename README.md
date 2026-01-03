@@ -50,10 +50,6 @@ The project focuses on improving agricultural productivity by enabling early dis
 - Students learning applied machine learning in agriculture  
 - Academic demonstration of AI-based agriculture systems  
 
-## Project Type
-- Academic Mini / Major Project  
-- Designed for BCA-level evaluation and demonstration  
-
 ## Future Enhancements
 - Integration with IoT sensors for real-time data collection  
 - Mobile application support  
