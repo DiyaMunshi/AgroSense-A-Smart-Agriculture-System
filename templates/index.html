@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AgroSense — Smart Agriculture</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+body {
+  background: 
+    linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url('/static/images/background.jpg') center/cover fixed no-repeat;
+}
+</style>
+
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>AgroSense</h1>
+      <p>Intelligent Irrigation & Crop Health Powered by Machine Learning</p>
+    </header>
+
+    <section class="cards">
+      <a class="card" href="/disease">
+        <h2>Plant Disease Detection</h2>
+        <p>Upload a leaf image and get diagnosis + treatment advice.</p>
+      </a>
+
+      <a class="card" href="/irrigation">
+        <h2>Irrigation Prediction</h2>
+        <p>Enter environmental values and get irrigation recommendations.</p>
+      </a>
+    </section>
+
+    <footer>
+      <p><center> Built with Flask + TensorFlow + scikit-learn</center></p>
+    </footer>
+  </main>
+  <script src="/static/script.js"></script>
+</body>
+</html>

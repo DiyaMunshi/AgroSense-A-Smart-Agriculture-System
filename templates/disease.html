@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Plant Disease Detection — AgroSense</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+body {
+  background: 
+    linear-gradient(0deg, rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    url('/static/images/background1.jpg') center/cover fixed no-repeat;
+}
+</style>
+
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="/">← Back</a>
+    <h2>Plant Disease Detection</h2>
+
+    <div class="card form-card">
+      <label class="file-label">
+        <input id="imageInput" type="file" accept="image/*">
+        <span>Choose Image</span>
+      </label>
+
+      <div id="previewWrap" class="preview-wrap" style="display:none;">
+        <img id="preview" alt="preview" />
+      </div>
+
+      <button id="uploadBtn" class="btn">Predict Disease</button>
+
+      <div id="result" class="result"></div>
+    </div>
+  </main>
+  <script src="/static/script.js"></script>
+</body>
+</html>
