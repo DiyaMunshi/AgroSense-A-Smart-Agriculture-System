@@ -1,17 +1,23 @@
-import base64
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+import base64
 import io
 import joblib
 import numpy as np
 import requests
 import tensorflow as tf
-from flask import Flask, request, jsonify
+
+tf.config.set_visible_devices([], "GPU")
+tf.config.threading.set_inter_op_parallelism_threads(1)
+tf.config.threading.set_intra_op_parallelism_threads(1)
+
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from PIL import Image
-from tensorflow.keras.applications import MobileNetV2
-from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, BatchNormalization, Dropout
-from tensorflow.keras.models import Model
+from tensorflow.keras.models import load_model
 from dotenv import load_dotenv
+
 
 app = Flask(__name__)
 
@@ -32,21 +38,11 @@ def irrigation_page():
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-# Force CPU to avoid GPU errors
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-# Load Models
-irrigation_model, scaler = joblib.load("models/irrigation_model.pkl")
 
-base_model = MobileNetV2(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
-x = base_model.output
-x = GlobalAveragePooling2D()(x)
-x = Dense(1024, activation='relu')(x)
-x = Dense(512, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
-prediction = Dense(15, activation='softmax')(x)
-plant_model = Model(inputs=base_model.input, outputs=prediction)
-plant_model.load_weights("models/plant_disease_model.h5")
+
+# Load ML models ONCE
+irrigation_model, scaler = joblib.load("models/irrigation_model.pkl")
+plant_model = load_model("models/plant_disease_model.h5")
 
 # Weather API Key 
 load_dotenv()
